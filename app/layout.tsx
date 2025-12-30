@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Cormorant_Garamond, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { Toaster } from "@/components/ui/toaster"
 
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${cormorantGaramond.className} antialiased`}>
         {children}
+        <Toaster />
         <Analytics />
       </body>
     </html>
