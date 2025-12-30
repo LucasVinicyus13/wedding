@@ -11,7 +11,7 @@ export function HeroSection() {
       <div className="relative h-full flex items-end justify-center pb-16">
         <div className="w-64 h-64 relative">
           <Image
-            src="/wedding-monogram-logo-elegant.jpg"
+            src="/IniciaisLE.png"
             alt="Monograma do casamento"
             fill
             className="object-contain drop-shadow-2xl"
