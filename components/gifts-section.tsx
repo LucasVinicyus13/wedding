@@ -117,7 +117,7 @@ export function GiftsSection() {
             <div className="flex justify-center">
               <div className="w-64 h-64 bg-muted rounded-lg flex items-center justify-center">
                 <Image
-                  src="/qr-code.jpg"
+                  src="/qr-code.jpeg"
                   alt="QR Code Pix"
                   width={256}
                   height={256}
@@ -136,7 +136,7 @@ export function GiftsSection() {
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">Chave Pix:</p>
               <p className="text-lg font-mono font-semibold text-foreground break-all px-4">
-                sua-chave-pix@exemplo.com
+                (43) 99836-9388
               </p>
             </div>
           </div>
