@@ -158,17 +158,17 @@ export function GiftsSection() {
             */}
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Banco:</p>
-              <p className="text-base font-semibold text-foreground">000 - Nome do Banco</p>
+              <p className="text-base font-semibold text-foreground">001 - Banco do Brasil S.A.</p>
             </div>
 
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Agência:</p>
-              <p className="text-base font-semibold text-foreground">0000</p>
+              <p className="text-base font-semibold text-foreground">633-5</p>
             </div>
 
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Conta:</p>
-              <p className="text-base font-semibold text-foreground">00000-0</p>
+              <p className="text-base font-semibold text-foreground">45192-4</p>
             </div>
 
             <div className="space-y-1">
@@ -178,12 +178,12 @@ export function GiftsSection() {
 
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">CPF:</p>
-              <p className="text-base font-semibold text-foreground">000.000.000-00</p>
+              <p className="text-base font-semibold text-foreground">132.273.879-30</p>
             </div>
 
             <div className="space-y-1">
               <p className="text-sm text-muted-foreground">Titular:</p>
-              <p className="text-base font-semibold text-foreground">Nome Completo</p>
+              <p className="text-base font-semibold text-foreground">Lucas Vinicyus Sanches Anacleto</p>
             </div>
           </div>
         </DialogContent>
