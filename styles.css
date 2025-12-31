@@ -500,6 +500,24 @@ body {
   border-color: var(--primary);
 }
 
+/* Adicionando estilos para o campo de seleção */
+.form-select {
+  height: 48px;
+  padding: 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: "Cormorant Garamond", serif;
+  transition: border-color 0.3s ease;
+  background: var(--background);
+  cursor: pointer;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
 .button-group {
   display: flex;
   gap: 1rem;
