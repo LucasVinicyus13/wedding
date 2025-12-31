@@ -147,6 +147,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Ajustar posição da imagem para mostrar os rostos dos noivos */
+  object-position: center 30%;
 }
 
 .hero-gradient {
