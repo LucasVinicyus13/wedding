@@ -15,6 +15,51 @@ const telefoneInput = document.getElementById("telefone")
 const submitBtn = document.getElementById("submit-btn")
 let selectedOption = ""
 
+// Phone mask function
+function applyPhoneMask(value) {
+  // Remove tudo que não é número
+  value = value.replace(/\D/g, "")
+
+  // Limita a 11 números
+  value = value.substring(0, 11)
+
+  // Aplica a máscara (XX) XXXXX-XXXX
+  if (value.length <= 2) {
+    value = value.replace(/^(\d{0,2})/, "($1")
+  } else if (value.length <= 7) {
+    value = value.replace(/^(\d{2})(\d{0,5})/, "($1) $2")
+  } else {
+    value = value.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3")
+  }
+
+  return value
+}
+
+// Apply mask on telefone input
+telefoneInput.addEventListener("input", function (e) {
+  const cursorPosition = this.selectionStart
+  const previousLength = this.value.length
+
+  this.value = applyPhoneMask(this.value)
+
+  const newLength = this.value.length
+  const lengthDiff = newLength - previousLength
+
+  // Ajusta a posição do cursor
+  this.setSelectionRange(cursorPosition + lengthDiff, cursorPosition + lengthDiff)
+
+  validateForm()
+})
+
+// Prevent non-numeric input
+telefoneInput.addEventListener("keypress", (e) => {
+  // Permite apenas números, backspace, delete, e teclas de navegação
+  const charCode = e.which ? e.which : e.keyCode
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    e.preventDefault()
+  }
+})
+
 // Handle confirmation buttons
 const confirmButtons = document.querySelectorAll("[data-option]")
 confirmButtons.forEach((button) => {
@@ -42,7 +87,6 @@ function validateForm() {
 
 // Add input listeners
 nomeInput.addEventListener("input", validateForm)
-telefoneInput.addEventListener("input", validateForm)
 
 // Form submission
 confirmationForm.addEventListener("submit", (e) => {
