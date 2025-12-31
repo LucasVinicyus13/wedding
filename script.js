@@ -89,23 +89,49 @@ function validateForm() {
 nomeInput.addEventListener("input", validateForm)
 
 // Form submission
-confirmationForm.addEventListener("submit", (e) => {
+confirmationForm.addEventListener("submit", async (e) => {
   e.preventDefault()
+
+  // Added loading state and Google Sheets integration
+  submitBtn.disabled = true
+  submitBtn.textContent = "Enviando..."
 
   const formData = {
     nome: nomeInput.value,
     telefone: telefoneInput.value,
     confirmacao: selectedOption,
+    timestamp: new Date().toLocaleString("pt-BR"),
   }
 
-  console.log("Dados do formulário:", formData)
-  alert("Confirmação enviada com sucesso! Obrigado.")
+  try {
+    // TODO: Substitua esta URL pela URL do seu Google Apps Script
+    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
 
-  // Reset form
-  confirmationForm.reset()
-  confirmButtons.forEach((btn) => btn.classList.remove("active"))
-  selectedOption = ""
-  validateForm()
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+
+    // No-cors mode doesn't allow reading the response, so we assume success
+    console.log("Dados enviados:", formData)
+    alert("Confirmação enviada com sucesso! Obrigado.")
+
+    // Reset form
+    confirmationForm.reset()
+    confirmButtons.forEach((btn) => btn.classList.remove("active"))
+    selectedOption = ""
+    validateForm()
+  } catch (error) {
+    console.error("Erro ao enviar dados:", error)
+    alert("Erro ao enviar confirmação. Por favor, tente novamente.")
+  } finally {
+    submitBtn.disabled = false
+    submitBtn.textContent = "Confirmar Presença"
+  }
 })
 
 // Modal functions
