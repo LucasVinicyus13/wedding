@@ -193,15 +193,20 @@
 
           <div class="form-card">
             <form id="confirmation-form" class="form">
+              <!-- Substituindo campo de texto por lista de seleção de convidados -->
               <div class="form-group">
-                <label for="nome" class="form-label">Nome Completo</label>
-                <input
-                  type="text"
+                <label for="nome" class="form-label">Selecione seu Nome</label>
+                <select
                   id="nome"
-                  class="form-input"
-                  placeholder="Digite seu nome completo"
+                  class="form-select"
                   required
                 >
+                  <option value="">Selecione seu nome na lista</option>
+                  <!-- ADICIONE OS NOMES DOS CONVIDADOS AQUI -->
+                  <option value="Convidado Exemplo 1">Convidado Exemplo 1</option>
+                  <option value="Convidado Exemplo 2">Convidado Exemplo 2</option>
+                  <option value="Convidado Exemplo 3">Convidado Exemplo 3</option>
+                </select>
               </div>
 
               <div class="form-group">
