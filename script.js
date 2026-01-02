@@ -105,7 +105,7 @@ confirmationForm.addEventListener("submit", async (e) => {
 
   try {
     // TODO: Substitua esta URL pela URL do seu Google Apps Script
-    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/u/0/home/projects/1l5123JgVwW75xJgsT2U9n9vzjR4iW7lo2hytlOLET2Yn6q_3E7yLIyfo/edit?pli=1"
 
     const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
