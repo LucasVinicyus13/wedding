@@ -192,20 +192,28 @@
           </div>
 
           <div class="form-card">
-            <form id="confirmation-form" class="form">
+            <!-- Formulário agora usa FormSubmit -->
+            <form id="confirmation-form" class="form" action="https://formsubmit.co/wedding.page0@gmail.com" method="POST">
+              <!-- Campos ocultos do FormSubmit -->
+              <input type="hidden" name="_subject" value="Nova Confirmação de Casamento">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="text" name="_honey" style="display:none">
+              
               <!-- Substituindo campo de texto por lista de seleção de convidados -->
               <div class="form-group">
                 <label for="nome" class="form-label">Selecione seu Nome</label>
                 <select
                   id="nome"
+                  name="Nome"
                   class="form-select"
                   required
                 >
                   <option value="">Selecione seu nome na lista</option>
                   <!-- ADICIONE OS NOMES DOS CONVIDADOS AQUI -->
-                  <option value="Convidado Exemplo 1">Convidado Exemplo 1</option>
-                  <option value="Convidado Exemplo 2">Convidado Exemplo 2</option>
-                  <option value="Convidado Exemplo 3">Convidado Exemplo 3</option>
+                  <option value="Lucas Vinicyus Sanches Anacleto">Lucas Vinicyus Sanches Anacleto</option>
+                  <option value="Eva Maria Milan Vergilio">Eva Maria Milan Vergilio</option>
+                  <option value="Vitor José Guilherme Cardoso">Vitor José Guilherme Cardoso</option>
                 </select>
               </div>
 
@@ -214,6 +222,7 @@
                 <input
                   type="tel"
                   id="telefone"
+                  name="Telefone"
                   class="form-input"
                   placeholder="(00) 00000-0000"
                   required
@@ -222,11 +231,12 @@
 
               <div class="form-group">
                 <label class="form-label">Confirmação de Presença</label>
+                <input type="hidden" id="confirmacao-hidden" name="Confirmação" value="">
                 <div class="button-group">
-                  <button type="button" class="btn btn-outline" data-option="sim">
+                  <button type="button" class="btn btn-outline" data-option="Sim, estarei presente">
                     Sim, estarei presente
                   </button>
-                  <button type="button" class="btn btn-outline" data-option="nao">
+                  <button type="button" class="btn btn-outline" data-option="Não poderei comparecer">
                     Não poderei comparecer
                   </button>
                 </div>
