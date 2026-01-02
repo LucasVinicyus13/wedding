@@ -92,7 +92,6 @@ nomeInput.addEventListener("input", validateForm)
 confirmationForm.addEventListener("submit", async (e) => {
   e.preventDefault()
 
-  // Added loading state and Google Sheets integration
   submitBtn.disabled = true
   submitBtn.textContent = "Enviando..."
 
@@ -104,33 +103,39 @@ confirmationForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    // TODO: Substitua esta URL pela URL do seu Google Apps Script
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/u/0/home/projects/1l5123JgVwW75xJgsT2U9n9vzjR4iW7lo2hytlOLET2Yn6q_3E7yLIyfo/edit?pli=1"
+    // ⚠️ IMPORTANTE: Substitua pela URL do DEPLOY do seu Google Apps Script
+    // A URL deve terminar com /exec
+    // Exemplo: https://script.google.com/macros/s/AKfycby.../exec
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyo7MIY3mlLl_Ke09xStVDyknq6fesM3sysS0y35vlt4y0LTdIfvKlfk9rD7M_J1kA_AA/exec"
 
     const response = await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
 
-    // No-cors mode doesn't allow reading the response, so we assume success
-    console.log("Dados enviados:", formData)
-    alert("Confirmação enviada com sucesso! Obrigado.")
+    const result = await response.json()
 
-    // Reset form
-    confirmationForm.reset()
-    confirmButtons.forEach((btn) => btn.classList.remove("active"))
-    selectedOption = ""
-    validateForm()
+    if (result.status === "success") {
+      console.log("Dados enviados:", formData)
+      alert("Confirmação enviada com sucesso! Obrigado.")
+
+      // Reset form
+      confirmationForm.reset()
+      confirmButtons.forEach((btn) => btn.classList.remove("active"))
+      selectedOption = ""
+      validateForm()
+    } else {
+      throw new Error(result.message || "Erro ao enviar dados")
+    }
   } catch (error) {
     console.error("Erro ao enviar dados:", error)
     alert("Erro ao enviar confirmação. Por favor, tente novamente.")
   } finally {
     submitBtn.disabled = false
-    submitBtn.textContent = "Confirmar Presença"
+    submitBtn.textContent = "Enviar Confirmação"
   }
 })
 
