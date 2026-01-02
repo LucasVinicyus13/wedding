@@ -175,3 +175,5 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   })
 })
+
+// Additional updates can be added here if needed
