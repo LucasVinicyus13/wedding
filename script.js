@@ -12,6 +12,7 @@ window.addEventListener("scroll", () => {
 const confirmationForm = document.getElementById("confirmation-form")
 const nomeInput = document.getElementById("nome")
 const telefoneInput = document.getElementById("telefone")
+const confirmacaoHidden = document.getElementById("confirmacao-hidden")
 const submitBtn = document.getElementById("submit-btn")
 let selectedOption = ""
 
@@ -73,6 +74,8 @@ confirmButtons.forEach((button) => {
     // Store selected option
     selectedOption = this.dataset.option
 
+    confirmacaoHidden.value = selectedOption
+
     // Check if form is valid
     validateForm()
   })
@@ -89,54 +92,20 @@ function validateForm() {
 nomeInput.addEventListener("input", validateForm)
 
 // Form submission
-confirmationForm.addEventListener("submit", async (e) => {
-  e.preventDefault()
+confirmationForm.addEventListener("submit", (e) => {
+  // Verifica se o campo de confirmação está preenchido
+  if (!confirmacaoHidden.value) {
+    e.preventDefault()
+    alert("Por favor, selecione se você estará presente ou não.")
+    return false
+  }
 
+  // O formulário será enviado normalmente pelo HTML para o FormSubmit
   submitBtn.disabled = true
   submitBtn.textContent = "Enviando..."
 
-  const formData = {
-    nome: nomeInput.value,
-    telefone: telefoneInput.value,
-    confirmacao: selectedOption,
-    timestamp: new Date().toLocaleString("pt-BR"),
-  }
-
-  try {
-    // ⚠️ IMPORTANTE: Substitua pela URL do DEPLOY do seu Google Apps Script
-    // A URL deve terminar com /exec
-    // Exemplo: https://script.google.com/macros/s/AKfycby.../exec
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyo7MIY3mlLl_Ke09xStVDyknq6fesM3sysS0y35vlt4y0LTdIfvKlfk9rD7M_J1kA_AA/exec"
-
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-
-    const result = await response.json()
-
-    if (result.status === "success") {
-      console.log("Dados enviados:", formData)
-      alert("Confirmação enviada com sucesso! Obrigado.")
-
-      // Reset form
-      confirmationForm.reset()
-      confirmButtons.forEach((btn) => btn.classList.remove("active"))
-      selectedOption = ""
-      validateForm()
-    } else {
-      throw new Error(result.message || "Erro ao enviar dados")
-    }
-  } catch (error) {
-    console.error("Erro ao enviar dados:", error)
-    alert("Erro ao enviar confirmação. Por favor, tente novamente.")
-  } finally {
-    submitBtn.disabled = false
-    submitBtn.textContent = "Enviar Confirmação"
-  }
+  // FormSubmit vai redirecionar automaticamente após o envio
+  return true
 })
 
 // Modal functions
